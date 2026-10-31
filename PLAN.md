@@ -62,7 +62,7 @@
 ---
 
 ## Phase 4: Core Calculation Services (Ledger, Bilan, Inventaire, Audit)
-- [ ] **P4.1:** Implement `LedgerAndBilan` module (`ledger` schema with RLS):
+- [x] **P4.1:** Implement `LedgerAndBilan` module (`ledger` schema with RLS):
   - Hierarchical Chart of Accounts (`PlanComptable` classes 1 to 7 supporting SCE/PCG).
   - `JournalEntry` and `JournalEntryLine` with invariant `Sum(Debit) == Sum(Credit)` and PostgreSQL trigger `prevent_posted_entry_mutation()`.
   - `BilanCalculationService` generating `BalanceGenerale` (Trial Balance), `BilanActif`, `BilanPassif`, and `EtatDeResultat` with exact drill-down references to source `JournalEntry` and `Document` IDs.
