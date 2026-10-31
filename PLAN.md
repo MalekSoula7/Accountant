@@ -84,6 +84,6 @@
 - [x] **P5.2:** Build **Split-Screen HITL OCR Validation Component**:
   - Left pane: HTML5 Canvas PDF/Image viewer rendering color-coded bounding boxes (`green` >= 0.95, `amber` 0.80–0.94, `red` < 0.80 or math failure).
   - Right pane: Reactive Form synced bi-directionally with bounding boxes (focusing an input pans/zooms the canvas to that field's coordinates; keyboard shortcuts `Enter` to jump to next low-confidence field, `Ctrl+Enter` to validate and post).
-- [ ] **P5.3:** Build **Fraud Shield & Audit Cockpit**:
+- [x] **P5.3:** Build **Fraud Shield & Audit Cockpit**:
   - Interactive Benford's Law expected vs. actual digit bar chart, side-by-side duplicate invoice diff viewer, 3-way match status matrix, and one-click "Quarantine & Request Client Justification" workflow.
 - [ ] **P5.4:** Build **Interactive Bilan & Inventaire Workspaces** with full drill-down (`Bilan Line` -> `Account` -> `Journal Entry` -> `Original Scanned Document`) and run end-to-end build & test verification across the entire solution.
