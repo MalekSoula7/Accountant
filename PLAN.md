@@ -86,4 +86,4 @@
   - Right pane: Reactive Form synced bi-directionally with bounding boxes (focusing an input pans/zooms the canvas to that field's coordinates; keyboard shortcuts `Enter` to jump to next low-confidence field, `Ctrl+Enter` to validate and post).
 - [x] **P5.3:** Build **Fraud Shield & Audit Cockpit**:
   - Interactive Benford's Law expected vs. actual digit bar chart, side-by-side duplicate invoice diff viewer, 3-way match status matrix, and one-click "Quarantine & Request Client Justification" workflow.
-- [ ] **P5.4:** Build **Interactive Bilan & Inventaire Workspaces** with full drill-down (`Bilan Line` -> `Account` -> `Journal Entry` -> `Original Scanned Document`) and run end-to-end build & test verification across the entire solution.
+- [x] **P5.4:** Build **Interactive Bilan & Inventaire Workspaces** with full drill-down (`Bilan Line` -> `Account` -> `Journal Entry` -> `Original Scanned Document`) and run end-to-end build & test verification across the entire solution.
