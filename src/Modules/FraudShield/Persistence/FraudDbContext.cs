@@ -11,11 +11,26 @@ public sealed class FraudDbContext : ScopedModuleDbContext
 
     public DbSet<FraudAlert> Alerts => Set<FraudAlert>();
     public DbSet<IndexedInvoiceFingerprint> Fingerprints => Set<IndexedInvoiceFingerprint>();
+    public DbSet<ClientClarificationTicket> ClarificationTickets => Set<ClientClarificationTicket>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.HasDefaultSchema("fraud");
+
+        modelBuilder.Entity<ClientClarificationTicket>(e =>
+        {
+            e.ToTable("clarification_tickets");
+            e.HasKey(t => t.Id);
+            e.Property(t => t.MagicToken).HasMaxLength(128).IsRequired();
+            e.Property(t => t.Status).HasConversion<string>().HasMaxLength(30);
+            e.Property(t => t.QuestionPrompt).HasMaxLength(1000);
+            e.Property(t => t.ClientExplanation).HasMaxLength(4000);
+            e.Property(t => t.SupportingDocumentKey).HasMaxLength(500);
+
+            e.HasIndex(t => t.MagicToken).IsUnique();
+            e.HasIndex(t => new { t.CabinetId, t.DossierId, t.FraudAlertId });
+        });
 
         modelBuilder.Entity<FraudAlert>(e =>
         {

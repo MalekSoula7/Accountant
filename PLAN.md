@@ -53,7 +53,7 @@
 - [x] **P3.2:** Implement `SemanticDuplicateDetector` running composite fuzzy matching on `(SupplierMatriculeFiscal, InvoiceDate, TotalTTC, NormalizedInvoiceNumber)` + image perceptual hash (`pHash`) across current and prior `Exercice` records within the same `DossierId`.
 - [x] **P3.3:** Implement `ThreeWayMatchingEngine` reconciling Purchase Order (`BonDeCommande`) <-> Delivery Note (`BonDeReception`) <-> Supplier Invoice (`Facture`) <-> Bank Statement Line (`LigneReleveBancaire`), flagging phantom deliveries or unit price inflation.
 - [x] **P3.4:** Implement `BenfordLawAuditService` (calculating 1st-digit and 2nd-digit distributions across ledger accounts and running a Chi-Square goodness-of-fit test with $df=8$, flagging p-values $< 0.05$ and threshold-splitting clusters just below approval limits).
-- [ ] **P3.5:** Implement `FraudRectificationService`:
+- [x] **P3.5:** Implement `FraudRectificationService`:
   - Quarantine flagged documents from `Bilan` calculations.
   - Generate magic-link `ClientClarificationTicket` for `ClientGuest` upload portal.
   - Auto-generate reversing/adjusting journal entries (`Écriture de Contrepassation / Régularisation`) upon auditor confirmation.
