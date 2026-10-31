@@ -24,7 +24,7 @@
   - Reflection-based EF Core Global Query Filter applying `CabinetId`, `DossierId`, and `ExerciceId` to all `IDossierScopedEntity` models.
   - `SaveChangesAsync` override that blocks writes when `IsExerciceLocked == true`, auto-stamps `CabinetId`/`DossierId`/`ExerciceId` on `Added`, and prevents mutation of tenant keys on `Modified`/`Deleted`.
   - `RlsDbConnectionInterceptor` executing `set_config('app.current_cabinet_id', ...)`, `set_config('app.current_dossier_id', ...)`, and `set_config('app.current_exercice_id', ...)` on every connection open.
-- [ ] **P1.4:** Implement `Tenancy` module & PostgreSQL schema (`tenancy`):
+- [x] **P1.4:** Implement `Tenancy` module & PostgreSQL schema (`tenancy`):
   - Entities & migrations with composite keys: `Cabinet` `(id)`, `Dossier` `(cabinet_id, id)`, `Exercice` `(cabinet_id, dossier_id, id)`, and `DossierAssignment` `(cabinet_id, dossier_id, user_id)` with granular permission flags (`CanValidateOcr`, `CanPostEntries`, `CanLockBilan`).
   - `RedisPermissionChecker` caching user-to-dossier assignments (`cabinet:{cabinetId}:user:{userId}:dossiers`) with sub-millisecond lookup and cache invalidation on role change.
   - `TenantScopeMiddleware` in `ComptaShield.Api` resolving `CabinetId` from JWT and `X-Dossier-Id` / `X-Exercice-Id` from request headers, returning `403 Forbidden` on unauthorized dossier access.
