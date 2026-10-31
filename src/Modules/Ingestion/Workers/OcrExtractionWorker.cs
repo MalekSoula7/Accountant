@@ -8,6 +8,8 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
+using ComptaShield.Ingestion.Validators;
+
 namespace ComptaShield.Ingestion.Workers;
 
 /// <summary>
@@ -15,23 +17,27 @@ namespace ComptaShield.Ingestion.Workers;
 /// For XML files: uses TeifXmlInvoiceParser.
 /// For other files: simulates OCR extraction with JSONB fields,
 /// bounding box coordinates, and per-field confidence scores.
+/// Validates math and confidence gates via DocumentMathAndConfidenceValidator.
 /// </summary>
 public sealed class OcrExtractionWorker : IConsumer<DocumentUploadedIntegrationEvent>
 {
     private readonly IngestionDbContext _dbContext;
     private readonly IWormStorageService _storageService;
     private readonly Parsers.TeifXmlInvoiceParser _teifParser;
+    private readonly DocumentMathAndConfidenceValidator _validator;
     private readonly ILogger<OcrExtractionWorker> _logger;
 
     public OcrExtractionWorker(
         IngestionDbContext dbContext,
         IWormStorageService storageService,
         Parsers.TeifXmlInvoiceParser teifParser,
+        DocumentMathAndConfidenceValidator validator,
         ILogger<OcrExtractionWorker> logger)
     {
         _dbContext = dbContext;
         _storageService = storageService;
         _teifParser = teifParser;
+        _validator = validator;
         _logger = logger;
     }
 
@@ -79,11 +85,18 @@ public sealed class OcrExtractionWorker : IConsumer<DocumentUploadedIntegrationE
                 new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             document.ProcessedAt = DateTime.UtcNow;
 
-            // Status will be set by DocumentMathAndConfidenceValidator downstream
-            document.Status = DocumentStatus.Processing;
+            // Enforce financial cross-sum and confidence gate
+            var validationResult = _validator.Validate(extractedData);
+            document.Status = validationResult.TargetStatus;
+            if (!validationResult.IsValid)
+            {
+                document.ProcessingError = string.Join("; ", validationResult.Discrepancies);
+            }
+
             await _dbContext.SaveChangesAsync(context.CancellationToken);
 
-            _logger.LogInformation("Document {DocumentId} extraction complete", message.DocumentId);
+            _logger.LogInformation("Document {DocumentId} extraction complete with status {Status}", 
+                message.DocumentId, document.Status);
         }
         catch (Exception ex)
         {
