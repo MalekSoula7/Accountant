@@ -57,7 +57,7 @@
   - Quarantine flagged documents from `Bilan` calculations.
   - Generate magic-link `ClientClarificationTicket` for `ClientGuest` upload portal.
   - Auto-generate reversing/adjusting journal entries (`Écriture de Contrepassation / Régularisation`) upon auditor confirmation.
-- [ ] **P3.6:** Write xUnit test suite in `tests/ComptaShield.FraudShield.UnitTests` proving synthetic tampered PDFs, fuzzy duplicates, 3-way mismatches, and non-Benford fabricated numbers trigger accurate `FraudAlert` entities.
+- [x] **P3.6:** Write xUnit test suite in `tests/ComptaShield.FraudShield.UnitTests` proving synthetic tampered PDFs, fuzzy duplicates, 3-way mismatches, and non-Benford fabricated numbers trigger accurate `FraudAlert` entities.
 
 ---
 
