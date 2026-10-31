@@ -7,12 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.*" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.*" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\ComptaShield.SharedKernel\ComptaShield.SharedKernel.csproj" />
     <ProjectReference Include="..\..\Modules\Tenancy\ComptaShield.Tenancy.csproj" />
+    <ProjectReference Include="..\..\Modules\Ingestion\ComptaShield.Ingestion.csproj" />
+    <ProjectReference Include="..\..\Modules\FraudShield\ComptaShield.FraudShield.csproj" />
+    <ProjectReference Include="..\..\Modules\LedgerAndBilan\ComptaShield.LedgerAndBilan.csproj" />
+    <ProjectReference Include="..\..\Modules\Inventory\ComptaShield.Inventory.csproj" />
+    <ProjectReference Include="..\..\Modules\Audit\ComptaShield.Audit.csproj" />
   </ItemGroup>
 
 </Project>

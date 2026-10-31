@@ -78,7 +78,7 @@
 ---
 
 ## Phase 5: Angular 19+ Workspace, Split-Screen HITL Reviewer & Cockpits
-- [ ] **P5.1:** Scaffold Angular 19+ application (`src/Web/comptashield-ui`) with Standalone Components, Signals, TailwindCSS, and `decimal.js`:
+- [x] **P5.1:** Scaffold Angular 19+ application (`src/Web/comptashield-ui`) with Standalone Components, Signals, TailwindCSS, and `decimal.js`:
   - Implement `WorkspaceContextService` storing `ActiveWorkspace` (`cabinetId`, `dossierId`, `exerciceId`, `role`, `isLocked`) in **`sessionStorage`** for multi-tab isolation.
   - Implement `tenantHeadersInterceptor` (`HttpInterceptorFn`) injecting `X-Dossier-Id` and `X-Exercice-Id` headers on every request, plus header switcher UI for instant Dossier/Exercice switching.
 - [ ] **P5.2:** Build **Split-Screen HITL OCR Validation Component**:
