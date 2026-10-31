@@ -17,7 +17,7 @@
 
 ## Phase 1: Foundation, Two-Tier Multi-Tenancy (`Cabinet` -> `Dossier` -> `Exercice`) & RLS
 - [x] **P1.1:** Initialize `.NET 9` solution (`ComptaShield.sln`), `Directory.Build.props` (`TreatWarningsAsErrors=true`, `Nullable=enable`), and `docker-compose.yml` (`postgres:16-alpine`, `minio/minio`, `rabbitmq:3-management-alpine`, `redis:7-alpine`).
-- [ ] **P1.2:** Implement `ComptaShield.SharedKernel`:
+- [x] **P1.2:** Implement `ComptaShield.SharedKernel`:
   - `Money` value object (`decimal Amount`, `string Currency`, banker's rounding `MidpointRounding.ToEven`, arithmetic operators).
   - `DossierRole` enum (`Partner`, `SeniorAuditor`, `JuniorCollaborator`, `ClientGuest`), `ITenantContext`, `ScopedTenantContext`, and `IDossierScopedEntity` (`CabinetId`, `DossierId`, `ExerciceId`).
 - [ ] **P1.3:** Implement `ScopedModuleDbContext` and PostgreSQL RLS infrastructure in `SharedKernel`:
