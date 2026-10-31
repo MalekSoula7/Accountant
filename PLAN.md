@@ -20,7 +20,7 @@
 - [x] **P1.2:** Implement `ComptaShield.SharedKernel`:
   - `Money` value object (`decimal Amount`, `string Currency`, banker's rounding `MidpointRounding.ToEven`, arithmetic operators).
   - `DossierRole` enum (`Partner`, `SeniorAuditor`, `JuniorCollaborator`, `ClientGuest`), `ITenantContext`, `ScopedTenantContext`, and `IDossierScopedEntity` (`CabinetId`, `DossierId`, `ExerciceId`).
-- [ ] **P1.3:** Implement `ScopedModuleDbContext` and PostgreSQL RLS infrastructure in `SharedKernel`:
+- [x] **P1.3:** Implement `ScopedModuleDbContext` and PostgreSQL RLS infrastructure in `SharedKernel`:
   - Reflection-based EF Core Global Query Filter applying `CabinetId`, `DossierId`, and `ExerciceId` to all `IDossierScopedEntity` models.
   - `SaveChangesAsync` override that blocks writes when `IsExerciceLocked == true`, auto-stamps `CabinetId`/`DossierId`/`ExerciceId` on `Added`, and prevents mutation of tenant keys on `Modified`/`Deleted`.
   - `RlsDbConnectionInterceptor` executing `set_config('app.current_cabinet_id', ...)`, `set_config('app.current_dossier_id', ...)`, and `set_config('app.current_exercice_id', ...)` on every connection open.
