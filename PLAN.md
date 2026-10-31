@@ -69,7 +69,7 @@
 - [x] **P4.2:** Implement `Inventory` module (`inventory` schema with RLS):
   - `CumpValuationCalculator` (Weighted Average Cost after each receipt) and `FifoValuationCalculator` (First-In, First-Out lot tracking) using strict `decimal` math.
   - `InventoryReconciliationService` comparing `TheoreticalStock` vs. `PhysicalCount` (`PV d'Inventaire`), calculating shrinkage anomalies (`Écart d'Inventaire`), and generating inventory depreciation provisions.
-- [ ] **P4.3:** Implement `Audit` module (`audit` schema with RLS):
+- [x] **P4.3:** Implement `Audit` module (`audit` schema with RLS):
   - Materiality calculator (`Seuil de Signification` & `Erreur Tolérable` based on revenue/equity/profit benchmarks).
   - Monetary Unit Sampling (MUS) / Stratified random sampling selector for audit workpapers.
   - Cryptographically hashed PDF/XML deliverable generator stamping final `Bilan`, `PV d'Inventaire`, and `AuditReport` into the Tier-2 Deliverables Vault.
