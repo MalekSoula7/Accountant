@@ -31,12 +31,20 @@ public abstract class ScopedModuleDbContext : DbContext
 
     /// <summary>
     /// Scans all entity types implementing IDossierScopedEntity and applies
-    /// a query filter: e.CabinetId == _tenantContext.CabinetId
-    ///                  && e.DossierId == _tenantContext.DossierId
-    ///                  && e.ExerciceId == _tenantContext.ExerciceId
+    /// a query filter that dynamically reads from _tenantContext so EF Core
+    /// re-evaluates the current tenant values on every query (parameterized filter pattern).
+    /// Filter: e.CabinetId == _tenantContext.CabinetId
+    ///      && e.DossierId == _tenantContext.DossierId
+    ///      && e.ExerciceId == _tenantContext.ExerciceId
     /// </summary>
     private void ApplyGlobalQueryFilters(ModelBuilder modelBuilder)
     {
+        // Expression representing 'this' (the DbContext instance)
+        var dbContextExpr = Expression.Constant(this);
+        // Expression representing 'this._tenantContext'
+        var tenantField = Expression.Field(dbContextExpr, typeof(ScopedModuleDbContext)
+            .GetField("_tenantContext", BindingFlags.NonPublic | BindingFlags.Instance)!);
+
         foreach (var entityType in modelBuilder.Model.GetEntityTypes())
         {
             var clrType = entityType.ClrType;
@@ -45,9 +53,9 @@ public abstract class ScopedModuleDbContext : DbContext
 
             var parameter = Expression.Parameter(clrType, "e");
 
-            var filter = BuildEqualityExpression(parameter, nameof(IDossierScopedEntity.CabinetId), _tenantContext.CabinetId);
-            filter = Expression.AndAlso(filter, BuildEqualityExpression(parameter, nameof(IDossierScopedEntity.DossierId), _tenantContext.DossierId));
-            filter = Expression.AndAlso(filter, BuildEqualityExpression(parameter, nameof(IDossierScopedEntity.ExerciceId), _tenantContext.ExerciceId));
+            var filter = BuildDynamicEqualityExpression(parameter, tenantField, nameof(IDossierScopedEntity.CabinetId));
+            filter = Expression.AndAlso(filter, BuildDynamicEqualityExpression(parameter, tenantField, nameof(IDossierScopedEntity.DossierId)));
+            filter = Expression.AndAlso(filter, BuildDynamicEqualityExpression(parameter, tenantField, nameof(IDossierScopedEntity.ExerciceId)));
 
             var lambda = Expression.Lambda(filter, parameter);
 
@@ -67,11 +75,16 @@ public abstract class ScopedModuleDbContext : DbContext
         }
     }
 
-    private static BinaryExpression BuildEqualityExpression(ParameterExpression parameter, string propertyName, Guid value)
+    /// <summary>
+    /// Builds: e.{propertyName} == tenantContext.{propertyName}
+    /// where tenantContext is accessed dynamically (not a baked-in constant).
+    /// </summary>
+    private static BinaryExpression BuildDynamicEqualityExpression(
+        ParameterExpression parameter, MemberExpression tenantContextExpr, string propertyName)
     {
-        var property = Expression.Property(parameter, propertyName);
-        var constant = Expression.Constant(value);
-        return Expression.Equal(property, constant);
+        var entityProperty = Expression.Property(parameter, propertyName);
+        var tenantProperty = Expression.Property(tenantContextExpr, propertyName);
+        return Expression.Equal(entityProperty, tenantProperty);
     }
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess)

@@ -29,7 +29,7 @@
   - `RedisPermissionChecker` caching user-to-dossier assignments (`cabinet:{cabinetId}:user:{userId}:dossiers`) with sub-millisecond lookup and cache invalidation on role change.
   - `TenantScopeMiddleware` in `ComptaShield.Api` resolving `CabinetId` from JWT and `X-Dossier-Id` / `X-Exercice-Id` from request headers, returning `403 Forbidden` on unauthorized dossier access.
   - MassTransit `TenantPublishFilter` and `TenantConsumeFilter` propagating `TenantMessageHeader` to async background workers.
-- [ ] **P1.5:** Write xUnit integration tests (`tests/ComptaShield.Tenancy.IntegrationTests`) verifying:
+- [x] **P1.5:** Write xUnit integration tests (`tests/ComptaShield.Tenancy.IntegrationTests`) verifying:
   - Cross-cabinet and cross-dossier isolation (Dossier A query never returns Dossier B rows via EF Core or raw SQL with RLS enabled).
   - `JuniorCollaborator` assigned to Dossier A receives `403 Forbidden` when sending `X-Dossier-Id: DossierB`.
   - `Partner` has automatic access to all Dossiers within their `CabinetId`.
