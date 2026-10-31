@@ -73,7 +73,7 @@
   - Materiality calculator (`Seuil de Signification` & `Erreur Tolérable` based on revenue/equity/profit benchmarks).
   - Monetary Unit Sampling (MUS) / Stratified random sampling selector for audit workpapers.
   - Cryptographically hashed PDF/XML deliverable generator stamping final `Bilan`, `PV d'Inventaire`, and `AuditReport` into the Tier-2 Deliverables Vault.
-- [ ] **P4.4:** Write golden-dataset accounting verification tests proving zero rounding drift across 1,000+ journal entries, CUMP/FIFO lots, and balanced `Actif == Passif + Capitaux Propres`.
+- [x] **P4.4:** Write golden-dataset accounting verification tests proving zero rounding drift across 1,000+ journal entries, CUMP/FIFO lots, and balanced `Actif == Passif + Capitaux Propres`.
 
 ---
 

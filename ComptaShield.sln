@@ -31,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComptaShield.Ingestion.Tests", "tests\ComptaShield.Ingestion.Tests\ComptaShield.Ingestion.Tests.csproj", "{BF37B3B0-6965-4757-8B41-ABA6CBA093CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComptaShield.CoreCalculations.Tests", "tests\ComptaShield.CoreCalculations.Tests\ComptaShield.CoreCalculations.Tests.csproj", "{61C796B1-B9A5-465D-B5F0-0F6F8902B012}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,18 @@ Global
 		{BF37B3B0-6965-4757-8B41-ABA6CBA093CD}.Release|x64.Build.0 = Release|Any CPU
 		{BF37B3B0-6965-4757-8B41-ABA6CBA093CD}.Release|x86.ActiveCfg = Release|Any CPU
 		{BF37B3B0-6965-4757-8B41-ABA6CBA093CD}.Release|x86.Build.0 = Release|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Debug|x64.Build.0 = Debug|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Debug|x86.Build.0 = Debug|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Release|x64.ActiveCfg = Release|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Release|x64.Build.0 = Release|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Release|x86.ActiveCfg = Release|Any CPU
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -190,5 +204,6 @@ Global
 		{9D2B49A7-522F-43AB-82A7-9E68CF735747} = {C8E42992-5E42-0C2B-DBFE-AA848D06431C}
 		{E0924982-EDFF-480F-BA4B-AD7212A51369} = {C8E42992-5E42-0C2B-DBFE-AA848D06431C}
 		{BF37B3B0-6965-4757-8B41-ABA6CBA093CD} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{61C796B1-B9A5-465D-B5F0-0F6F8902B012} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
 EndGlobal
