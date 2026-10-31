@@ -66,7 +66,7 @@
   - Hierarchical Chart of Accounts (`PlanComptable` classes 1 to 7 supporting SCE/PCG).
   - `JournalEntry` and `JournalEntryLine` with invariant `Sum(Debit) == Sum(Credit)` and PostgreSQL trigger `prevent_posted_entry_mutation()`.
   - `BilanCalculationService` generating `BalanceGenerale` (Trial Balance), `BilanActif`, `BilanPassif`, and `EtatDeResultat` with exact drill-down references to source `JournalEntry` and `Document` IDs.
-- [ ] **P4.2:** Implement `Inventory` module (`inventory` schema with RLS):
+- [x] **P4.2:** Implement `Inventory` module (`inventory` schema with RLS):
   - `CumpValuationCalculator` (Weighted Average Cost after each receipt) and `FifoValuationCalculator` (First-In, First-Out lot tracking) using strict `decimal` math.
   - `InventoryReconciliationService` comparing `TheoreticalStock` vs. `PhysicalCount` (`PV d'Inventaire`), calculating shrinkage anomalies (`Écart d'Inventaire`), and generating inventory depreciation provisions.
 - [ ] **P4.3:** Implement `Audit` module (`audit` schema with RLS):
