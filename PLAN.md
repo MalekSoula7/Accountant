@@ -44,7 +44,7 @@
 - [x] **P2.4:** Implement `DocumentMathAndConfidenceValidator`:
   - Verify `Sum(Qty * UnitPrice - Discount) == TotalHT` and `TotalHT + TotalTVA + TimbreFiscal == TotalTTC`.
   - Route any document with field confidence `< 0.95` or math discrepancy to `DocumentStatus.RequiresHumanReview`; route verified documents to `DocumentStatus.ReadyForPosting`.
-- [ ] **P2.5:** Write unit & integration tests verifying duplicate SHA-256 rejection, TEIF XML parsing, and low-confidence routing to HITL review queue.
+- [x] **P2.5:** Write unit & integration tests verifying duplicate SHA-256 rejection, TEIF XML parsing, and low-confidence routing to HITL review queue.
 
 ---
 
