@@ -46,7 +46,7 @@ services:
       retries: 5
 
   minio:
-    image: minio/minio
+    image: cgr.dev/chainguard/minio:latest
     container_name: comptashield-minio
     restart: unless-stopped
     environment:
@@ -65,19 +65,20 @@ services:
       retries: 5
 
   minio-init:
-    image: minio/mc
+    image: cgr.dev/chainguard/minio-client:latest-dev
     container_name: comptashield-minio-init
     depends_on:
       minio:
         condition: service_healthy
-    entrypoint: >
-      /bin/sh -c "
-      mc alias set local http://minio:9000 comptashield DevP@ss2026! &&
-      mc mb --ignore-existing local/comptashield-vault &&
-      mc version enable local/comptashield-vault &&
-      mc retention set --default COMPLIANCE 365d local/comptashield-vault &&
-      echo 'MinIO bucket initialized with versioning and object lock'
-      "
+    entrypoint:
+      - /bin/sh
+      - -c
+      - >
+        mc alias set local http://minio:9000 comptashield DevP@ss2026! &&
+        mc mb --with-lock --ignore-existing local/comptashield-vault &&
+        mc retention set --default COMPLIANCE 365d local/comptashield-vault &&
+        echo 'MinIO bucket initialized with versioning and object lock'
+
 
 volumes:
   pgdata:
