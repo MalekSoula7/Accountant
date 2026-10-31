@@ -39,7 +39,7 @@
 
 ## Phase 2: WORM Storage Vault & Hybrid Ingestion Pipeline (OCR + TEIF XML)
 - [x] **P2.1:** Implement `S3WormStorageService` in `Ingestion` module storing inbound files at `/{cabinetId}/{dossierId}/{exerciceId}/inbound/{sha256}.{ext}` and signed deliverables at `/{cabinetId}/{dossierId}/{exerciceId}/deliverables/{docType}_{version}_{sha256}.pdf`.
-- [ ] **P2.2:** Implement `UploadDocumentCommand` with SHA-256 binary deduplication scoped per `(CabinetId, DossierId)` and Transactional Outbox publishing `DocumentUploadedIntegrationEvent` with `TenantMessageHeader`.
+- [x] **P2.2:** Implement `UploadDocumentCommand` with SHA-256 binary deduplication scoped per `(CabinetId, DossierId)` and Transactional Outbox publishing `DocumentUploadedIntegrationEvent` with `TenantMessageHeader`.
 - [ ] **P2.3:** Implement `TeifXmlInvoiceParser` (parsing structured e-invoice XML fields, supplier Matricule Fiscal, lines, TVA breakdown, and digital signature metadata) and `OcrExtractionWorker` (extracting JSONB fields, bounding box coordinates `[page, x, y, w, h]`, and per-field confidence scores `0.00`–`1.00`).
 - [ ] **P2.4:** Implement `DocumentMathAndConfidenceValidator`:
   - Verify `Sum(Qty * UnitPrice - Discount) == TotalHT` and `TotalHT + TotalTVA + TimbreFiscal == TotalTTC`.
